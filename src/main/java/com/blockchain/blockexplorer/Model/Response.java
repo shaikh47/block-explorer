@@ -1,7 +1,7 @@
 package com.blockchain.blockexplorer.Model;
 
 public class Response {
-    public boolean isStatus() {
+    public boolean getStatus() {
         return status;
     }
 

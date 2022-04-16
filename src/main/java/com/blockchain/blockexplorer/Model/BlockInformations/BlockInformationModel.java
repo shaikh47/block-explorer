@@ -1,6 +1,6 @@
 package com.blockchain.blockexplorer.Model.BlockInformations;
 
-public class BlockInformationModel {
+public class BlockInformationModel implements Comparable<BlockInformationModel> {
 
     public int getBlockNumber() {
         return blockNumber;
@@ -20,4 +20,9 @@ public class BlockInformationModel {
 
     private int blockNumber;
     private int transationCount;
+
+    @Override
+	public int compareTo(BlockInformationModel e) {
+		return Integer.valueOf(this.getBlockNumber()).compareTo(Integer.valueOf(e.getBlockNumber()));
+	}
 }

@@ -35,7 +35,12 @@ public class APIController {
     }
 
     @GetMapping("/getBulkBlockInformationWithCountFromLatest")
-    public Response getBlockInformation(@RequestParam("countFromLatest") int countFromLatest) {
-        return BlockInformationConsumer.getBlockInformation(countFromLatest);
+    public Response getBlockInformation(@RequestParam("countDownFromLatest") int countDownFromLatest) {
+        return BlockInformationConsumer.getBlockInformation(countDownFromLatest);
+    }
+
+    @GetMapping("/getBulkBlockInformationWithLastUpdatedBlockNumber")
+    public Response getLatestBlocksInformationWithLastUpdatedBlockNumber(@RequestParam("lastUpdatedBlockNumber") int lastUpdatedBlockNumber) {
+        return BlockInformationConsumer.getLatestBlocksInformationWithLastUpdatedBlockNumber(lastUpdatedBlockNumber);
     }
 }

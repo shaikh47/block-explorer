@@ -20,11 +20,27 @@ public class BlockInformationConsumer {
         return response;
     }
 
-    public static Response getBlockInformation(int countFromLatest) {
+    public static Response getBlockInformation(int countDownFromLatest) {
         Response response = new Response();
         response.setStatus(false);
 
-        response = getLatestBlock.getLatestBlocksInformation(web3j, countFromLatest);
+        response = getLatestBlock.getLatestBlocksInformation(web3j, countDownFromLatest);
+        return response;
+    }
+
+    public static Response getSpecificBlockInformation(int blockNumber) {
+        Response response = new Response();
+        response.setStatus(false);
+
+        response = getLatestBlock.getSpecificBlockInformation(web3j, blockNumber);
+        return response;
+    }
+
+    public static Response getLatestBlocksInformationWithLastUpdatedBlockNumber(int lastUpdatedBlockNumber) {
+        Response response = new Response();
+        response.setStatus(false);
+
+        response = getLatestBlock.getLatestBlocksInformationWithLastUpdatedBlockNumber(web3j, lastUpdatedBlockNumber);
         return response;
     }
 }
