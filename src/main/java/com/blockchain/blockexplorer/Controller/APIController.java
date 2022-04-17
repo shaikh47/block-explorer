@@ -43,4 +43,16 @@ public class APIController {
     public Response getLatestBlocksInformationWithLastUpdatedBlockNumber(@RequestParam("lastUpdatedBlockNumber") int lastUpdatedBlockNumber) {
         return BlockInformationConsumer.getLatestBlocksInformationWithLastUpdatedBlockNumber(lastUpdatedBlockNumber);
     }
+
+    @GetMapping("/getPreviousBlocksMultiThread")
+    public Response getPreviousBlocksMultiThread(@RequestParam("lowerBlock") int lowerBlock,
+                                      @RequestParam("higherBlock") int higherBlock) {
+        return BlockInformationConsumer.getPreviousBlocksMultiThread(lowerBlock, higherBlock);
+    }
+
+    @GetMapping("/getPreviousBlocks")
+    public Response getPreviousBlocks(@RequestParam("lowerBlock") int lowerBlock,
+                                      @RequestParam("higherBlock") int higherBlock) {
+        return BlockInformationConsumer.getPreviousBlocks(lowerBlock, higherBlock);
+    }
 }

@@ -2,6 +2,8 @@ package com.blockchain.blockexplorer;
 
 import com.blockchain.blockexplorer.BlockInformation.GetLatestBlock;
 import com.blockchain.blockexplorer.BlockInformation.GetLatestBlockImpl;
+import com.blockchain.blockexplorer.BlockInformation.GetPreviousBlocks.GetPreviousBlocksImpl;
+import com.blockchain.blockexplorer.BlockInformation.GetPreviousBlocks.GetPreviousBlocksService;
 import com.blockchain.blockexplorer.Config.Config;
 import com.blockchain.blockexplorer.Model.Response;
 import org.web3j.protocol.Web3j;
@@ -11,6 +13,7 @@ public class BlockInformationConsumer {
     public static Web3j web3j = Web3j.build(new HttpService(Config.ETHEREUM_URL));
 
     static GetLatestBlock getLatestBlock = new GetLatestBlockImpl();
+    static GetPreviousBlocksService getPreviousBlocks = new GetPreviousBlocksImpl();
 
     public static Response getBlockInformation() {
         Response response = new Response();
@@ -41,6 +44,22 @@ public class BlockInformationConsumer {
         response.setStatus(false);
 
         response = getLatestBlock.getLatestBlocksInformationWithLastUpdatedBlockNumber(web3j, lastUpdatedBlockNumber);
+        return response;
+    }
+
+    public static Response getPreviousBlocksMultiThread(int lowerBlock, int higherBlock) {
+        Response response = new Response();
+        response.setStatus(false);
+
+        response = getPreviousBlocks.getPreviousBlocksMultiThread(web3j, lowerBlock, higherBlock);
+        return response;
+    }
+
+    public static Response getPreviousBlocks(int lowerBlock, int higherBlock) {
+        Response response = new Response();
+        response.setStatus(false);
+
+        response = getPreviousBlocks.getPreviousBlocks(web3j, lowerBlock, higherBlock);
         return response;
     }
 }

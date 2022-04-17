@@ -88,6 +88,23 @@ public class GetLatestBlockImpl implements GetLatestBlock {
                     false).send().getBlock();
             int transactionCount = block.getTransactions().size();
             int latestBlockNumber = block.getNumber().intValue();
+
+            block.getAuthor(); // probably miner
+            block.getTransactions(); // transaction hashes
+            block.getBaseFeePerGas();
+            block.getDifficulty();
+            block.getExtraData();
+            block.getGasLimit();
+            block.getGasUsed();
+            block.getHash();
+            block.getMiner();
+            block.getLogsBloom();
+            block.getNonce();
+            block.getParentHash();
+            block.getSize();
+            block.getTimestamp();
+            block.getTotalDifficulty();
+
             BlockInformationModel blockInformation = new BlockInformationModel(latestBlockNumber, transactionCount);
             blockInformations.add(blockInformation);
 
