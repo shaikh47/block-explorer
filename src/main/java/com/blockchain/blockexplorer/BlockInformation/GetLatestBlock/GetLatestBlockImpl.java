@@ -1,23 +1,20 @@
-package com.blockchain.blockexplorer.BlockInformation;
+package com.blockchain.blockexplorer.BlockInformation.GetLatestBlock;
 
 import com.blockchain.blockexplorer.BlockInformation.MultiThreadBlockInfo.GetBlockInfoMultiThread;
-import com.blockchain.blockexplorer.BlockInformationConsumer;
 import com.blockchain.blockexplorer.Model.BlockInformations.BlockInformationModel;
 import com.blockchain.blockexplorer.Model.Response;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.core.DefaultBlockParameter;
 import org.web3j.protocol.core.DefaultBlockParameterName;
-import org.web3j.protocol.core.DefaultBlockParameterNumber;
 import org.web3j.protocol.core.methods.response.EthBlock;
 import org.web3j.protocol.core.methods.response.EthBlock.Block;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-public class GetLatestBlockImpl implements GetLatestBlock {
+public class GetLatestBlockImpl implements GetLatestBlockService {
     public Response getLatestBlockInformation(Web3j web3j) {
         Response response = new Response();
         response.setStatus(false);

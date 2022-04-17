@@ -1,7 +1,9 @@
 package com.blockchain.blockexplorer;
 
-import com.blockchain.blockexplorer.BlockInformation.GetLatestBlock;
-import com.blockchain.blockexplorer.BlockInformation.GetLatestBlockImpl;
+import com.blockchain.blockexplorer.BlockInformation.GetBlockDetails.FetchBlockDetailsImpl;
+import com.blockchain.blockexplorer.BlockInformation.GetBlockDetails.FetchBlockDetailsService;
+import com.blockchain.blockexplorer.BlockInformation.GetLatestBlock.GetLatestBlockService;
+import com.blockchain.blockexplorer.BlockInformation.GetLatestBlock.GetLatestBlockImpl;
 import com.blockchain.blockexplorer.BlockInformation.GetPreviousBlocks.GetPreviousBlocksImpl;
 import com.blockchain.blockexplorer.BlockInformation.GetPreviousBlocks.GetPreviousBlocksService;
 import com.blockchain.blockexplorer.Config.Config;
@@ -12,10 +14,11 @@ import org.web3j.protocol.http.HttpService;
 public class BlockInformationConsumer {
     public static Web3j web3j = Web3j.build(new HttpService(Config.ETHEREUM_URL));
 
-    static GetLatestBlock getLatestBlock = new GetLatestBlockImpl();
+    static GetLatestBlockService getLatestBlock = new GetLatestBlockImpl();
     static GetPreviousBlocksService getPreviousBlocks = new GetPreviousBlocksImpl();
+    static FetchBlockDetailsService fetchBlockDetails = new FetchBlockDetailsImpl();
 
-    public static Response getBlockInformation() {
+    public static Response getLatestBlockInformation() {
         Response response = new Response();
         response.setStatus(false);
 
@@ -60,6 +63,14 @@ public class BlockInformationConsumer {
         response.setStatus(false);
 
         response = getPreviousBlocks.getPreviousBlocks(web3j, lowerBlock, higherBlock);
+        return response;
+    }
+
+    public static Response getSingleBlockDetails(String blockNumber) {
+        Response response = new Response();
+        response.setStatus(false);
+
+        response = fetchBlockDetails.getSingleBlockDetails(web3j, blockNumber);
         return response;
     }
 }

@@ -29,9 +29,9 @@ import javax.websocket.Session;
 @RestController
 public class APIController {
 
-    @GetMapping("/getBlockInformation")
-    public Response getBlockInformation() {
-        return BlockInformationConsumer.getBlockInformation();
+    @GetMapping("/getLatestBlockInformation")
+    public Response getLatestBlockInformation() {
+        return BlockInformationConsumer.getLatestBlockInformation();
     }
 
     @GetMapping("/getBulkBlockInformationWithCountFromLatest")
@@ -54,5 +54,10 @@ public class APIController {
     public Response getPreviousBlocks(@RequestParam("lowerBlock") int lowerBlock,
                                       @RequestParam("higherBlock") int higherBlock) {
         return BlockInformationConsumer.getPreviousBlocks(lowerBlock, higherBlock);
+    }
+
+    @GetMapping("/getSingleBlockDetails")
+    public Response getSingleBlockDetails(@RequestParam("blockNumber") String blockNumber) {
+        return BlockInformationConsumer.getSingleBlockDetails(blockNumber);
     }
 }
